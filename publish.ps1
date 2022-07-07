@@ -62,9 +62,12 @@ if($Target.Equals("Release")) {
     $PackagePath="$ProjectPath\$Package"
 
     Write-Host "$PackagePath\$TargetAssembly"
-    Copy-Item -Path "$TargetPath\$TargetAssembly" -Destination "$PackagePath\plugins\$TargetAssembly" -Force
+    $odinRing = New-Item -Type Directory -Path "$PackagePath\OdinRing" -Force
+    Copy-Item -Path "$TargetPath\$TargetAssembly" -Destination "$odinRing\$TargetAssembly" -Force
     Copy-Item -Path "$ProjectPath\README.md" -Destination "$PackagePath\README.md" -Force
-    Compress-Archive -Path "$PackagePath\*" -DestinationPath "$TargetPath\$TargetAssembly.zip" -Force
+    $translation = New-Item -Type Directory -Path "$odinRing\Assets\Translations\English" -Force
+    Copy-Item -Path "$TargetPath\Assets\Translations\English\odinring.json" -Destination "$translation" -Force
+    Compress-Archive -Path "$PackagePath\*" -DestinationPath "GravenImageRD-OdinRing-0.1.0.zip" -Force
 }
 
 # Pop Location

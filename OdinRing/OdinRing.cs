@@ -25,7 +25,7 @@ namespace OdinRing
     [BepInDependency(Jotunn.Main.ModGuid)]
     internal class OdinRing : BaseUnityPlugin
     {
-        public const string PluginGUID = "com.jotunn.gravenimagerd.OdinRing";
+        public const string PluginGUID = "com.gravenimagerd.OdinRing";
         public const string PluginName = "OdinRing";
         public const string PluginVersion = "0.0.1";
 
@@ -96,6 +96,22 @@ namespace OdinRing
             };
 
             levelStatue.PiecePrefab.AddComponent<ForbiddenShrineComponent>();
+            
+        }
+    }
+
+    [HarmonyPatch(typeof(Menu), nameof(Menu.Show))]
+    public static class Menu_Show_Patch
+    {
+        public static bool Prefix(Menu __instance)
+        {
+            if (Player.m_localPlayer.GetOdinRingData().InForbiddenShrine != null)
+            {
+                Player.m_localPlayer.GetOdinRingData().InForbiddenShrine.CloseMenu();
+                return false;
+            }
+
+            return true;
         }
     }
 

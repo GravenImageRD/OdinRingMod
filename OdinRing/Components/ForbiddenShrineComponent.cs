@@ -46,6 +46,7 @@ namespace OdinRing.Components
 				{
 					return false;
 				}
+				Player.m_localPlayer.GetOdinRingData().InForbiddenShrine = this;
 				ShowLevelMenu();
 				return false;
 			}
@@ -68,7 +69,10 @@ namespace OdinRing.Components
 			vigUp.interactable = canLevelUp;
 			if (!canLevelUp)
             {
-                menuTexts["EitrNeededText"].color = Color.red;
+				if (menuTexts.ContainsKey("EitrNeededText"))
+				{
+					menuTexts["EitrNeededText"].color = Color.red;
+				}
             }
 
 			strDown.interactable = effectiveData.Attributes[OdinRingData.Attribute.Strength] != currentData.Attributes[OdinRingData.Attribute.Strength];
@@ -272,9 +276,11 @@ namespace OdinRing.Components
 			menuTexts["FoodDurationText"].color = effectiveData.GetFoodDurationBonus() > currentData.GetFoodDurationBonus() ? Color.green : Color.white;
 		}
 
-		void CloseMenu()
+		public void CloseMenu()
         {
+			Player.m_localPlayer.GetOdinRingData().InForbiddenShrine = null;
 			Jotunn.Logger.LogInfo("Closing menu");
+			menuTexts.Clear();
 			UnityEngine.Object.Destroy(menu);
 			GUIManager.BlockInput(false);
 		}

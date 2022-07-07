@@ -22,6 +22,7 @@ namespace OdinRing.Data
 
         HashSet<ZDOID> taggedMonsters = new HashSet<ZDOID>();
 
+        public ForbiddenShrineComponent InForbiddenShrine { get; set; } = null;
         public int Level { get; set; } = 0;
         public int Eitr { get; set; } = 0;
         public Dictionary<Attribute, int> Attributes { get; set; } = new Dictionary<Attribute, int>()
