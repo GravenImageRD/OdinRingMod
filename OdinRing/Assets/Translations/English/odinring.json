@@ -1,0 +1,19 @@
+{
+  "piece_odinring_levelstatue": "Forbidden Shrine",
+  "odinring_eitr": "Eitr",
+  "odinring_close": "Close",
+  "MeleeDamageLabel": "Melee Damage",
+  "RangedDamageLabel": "Ranged Damage",
+  "MaxHealthLabel": "Max Health",
+  "MaxStaminaLabel": "Max Stamina",
+  "CarryWeightLabel": "Carry Weight",
+  "MovementSpeedLabel": "Movement Speed",
+  "JumpStaminaLabel": "Jump Stamina Usage",
+  "DamageReductionLabel": "Phys. Dam. Reduction",
+  "FoodDurationLabel": "Food Duration",
+  "LevelLabel": "Level",
+  "EitrNeededLabel": "Eitr Needed",
+  "EitrHeldLabel": "Eitr Held",
+  "AttributePointsLabel": "Attribute Points",
+  "AttributesLabel":  "Strength\nDexterity\nEndurance\nVigor"
+}
