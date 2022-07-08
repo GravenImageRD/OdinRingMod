@@ -37,7 +37,7 @@ namespace OdinRing.Patches
                 foreach (var player in taggedPlayers)
                 {
                     var eitrPrefab = PrefabManager.Instance.GetPrefab("vfx_eitr");
-                    var eitr = GameObject.Instantiate(eitrPrefab, center + (Vector3.up * 0.25f), Quaternion.identity);
+                    var eitr = GameObject.Instantiate(eitrPrefab, center + Vector3.up, Quaternion.identity);
                     var eitrComponent = eitr.AddComponent<EitrComponent>();
                     eitrComponent.Player = player;
                     eitrComponent.Monster = monsterName;

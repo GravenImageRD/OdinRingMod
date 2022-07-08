@@ -67,7 +67,7 @@ if($Target.Equals("Release")) {
     Copy-Item -Path "$ProjectPath\README.md" -Destination "$PackagePath\README.md" -Force
     $translation = New-Item -Type Directory -Path "$odinRing\Assets\Translations\English" -Force
     Copy-Item -Path "$TargetPath\Assets\Translations\English\odinring.json" -Destination "$translation" -Force
-    Compress-Archive -Path "$PackagePath\*" -DestinationPath "GravenImageRD-OdinRing-0.1.0.zip" -Force
+    Compress-Archive -Path "$PackagePath\*" -DestinationPath "GravenImageRD-OdinRing-0.0.1.zip" -Force
 }
 
 # Pop Location

@@ -89,6 +89,10 @@ namespace OdinRing.Components
             {
 				currentData.Attributes[attribute.Key] = attribute.Value;
             }
+			var levelUpSfx = PrefabManager.Instance.CreateClonedPrefab("levelup", "sfx_levelup");
+			levelUpSfx.transform.SetParent(transform);
+			levelUpSfx.SetActive(true);
+			levelUpSfx.GetComponent<ZSFX>().Play();
 			CloseMenu();
         }
 
@@ -283,6 +287,10 @@ namespace OdinRing.Components
 			menuTexts.Clear();
 			UnityEngine.Object.Destroy(menu);
 			GUIManager.BlockInput(false);
+			var closeMenuSfx = PrefabManager.Instance.CreateClonedPrefab("closemenu", "sfx_gui_inventory_close");
+			closeMenuSfx.transform.SetParent(transform);
+			closeMenuSfx.SetActive(true);
+			closeMenuSfx.GetComponent<ZSFX>().Play();
 		}
 
 		bool InUseDistance(Humanoid human)

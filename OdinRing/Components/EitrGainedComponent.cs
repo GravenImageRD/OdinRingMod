@@ -13,14 +13,18 @@ namespace OdinRing.Components
     {
         ParticleSystem main;
         ParticleSystem sub;
+        float startTime;
+        Rigidbody rb;
 
         public Player Player { get; set; }
 
         private void Awake()
         {
-            var systems = GetComponentsInChildren<ParticleSystem>();
-            main = systems[0];
-            sub = systems[1];
+            //var systems = GetComponentsInChildren<ParticleSystem>();
+            startTime = Time.time;
+            //main = systems[0];
+            //sub = systems[1];
+            rb = GetComponent<Rigidbody>();
         }
 
         private void UpdateParticles(ParticleSystem system, float force)
@@ -51,7 +55,7 @@ namespace OdinRing.Components
                         }
                 }
                 Vector3 directionToTarget = (Player.transform.position - particleWorldPos).normalized;
-                Vector3 seekForce = directionToTarget * force * Time.deltaTime;
+                Vector3 seekForce = directionToTarget * (Time.time - startTime) * Time.deltaTime;
                 p.velocity += seekForce;
                 particles[i] = p;
             }
@@ -66,13 +70,14 @@ namespace OdinRing.Components
                 return;
             }
 
-            if (main.isStopped)
+            float duration = Time.time - startTime;
+            if (duration > 3f)
             {
                 ZNetScene.instance.Destroy(gameObject);
+                return;
             }
 
-            UpdateParticles(main, 10);
-            UpdateParticles(sub, 10);
+            transform.position = Player.transform.position + Vector3.up;
         }
     }
 }
